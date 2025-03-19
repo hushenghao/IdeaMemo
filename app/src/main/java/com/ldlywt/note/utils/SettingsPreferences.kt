@@ -61,7 +61,7 @@ object SettingsPreferences {
 
     suspend fun changeThemeMode(themeMode: ThemeMode) {
         updatePreference(PreferencesKeys.THEME_MODE, themeMode.name)
-        withContext(Dispatchers.IO) {
+        withContext(Dispatchers.Main) {
             applyAppCompatThemeMode(themeMode)
         }
     }
