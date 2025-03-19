@@ -7,6 +7,7 @@ import com.ldlywt.note.utils.SettingsPreferences
 import com.ldlywt.note.utils.SharedPreferencesUtils
 import dagger.hilt.android.HiltAndroidApp
 import kotlinx.coroutines.DelicateCoroutinesApi
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
@@ -28,7 +29,7 @@ class App : Application() {
             BackupScheduler.cancelDailyBackup(this)
         }
 
-        GlobalScope.launch {
+        GlobalScope.launch(Dispatchers.Main) {
             SettingsPreferences.themeMode.collect {
                 SettingsPreferences.applyAppCompatThemeMode(it)
             }
